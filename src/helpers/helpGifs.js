@@ -7,6 +7,7 @@ const helpGifs = () => {
       const limit = 23
       const gifsFrom = offset * 23
       const url = `http://api.giphy.com/v1/gifs/${endpoint}?&api_key=${apiKey}&limit=${limit}&q=${query}&offset=${gifsFrom}`
+      console.log(url)
       return fetch(url)
          .then(res => res.json())
          .then(gifs => {

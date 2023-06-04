@@ -1,60 +1,31 @@
-import { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import GifCard from '../Components/GifCard'
 import GifsList from '../Components/GifsList'
-import Searchbar from '../Components/SearchBar'
-import Subtitle from '../Components/Subtitle'
-import { PageContext } from '../context/pageInfoContext'
+const apiKey = 'E3tz28FivKKk4RtmkZdHwppgGlDCLcgr'
 
 const Search = () => {
-   const { handleKeyword, handleOffset, offset } = useContext(PageContext)
-   const { keyword } = useParams()
-   const [endpoint, setEndpoint] = useState('')
-   const [counter, setCounter] = useState(0)
+   const [gifs, setGifs] = useState(null)
+   const { category } = useParams()
+   const { search } = useLocation()
+   const query = new URLSearchParams(search)
+   const page = query.get('page')
+   const limit = 23
 
-   const pageTitle = keyword.split('&')[0]
    useEffect(() => {
-      const key = keyword.split('&')[0]
-
-      setEndpoint(keyword)
-      handleKeyword(key)
-   }, [keyword])
-
-   const handleCounter = quantity => setCounter(quantity)
+      fetch(
+         `http://api.giphy.com/v1/gifs/search?&api_key=${apiKey}&limit=${limit}&offset=${
+            page * limit
+         }&q=${category}}`
+      )
+         .then(res => res.json())
+         .then(data => setGifs(data.data))
+   }, [category])
 
    return (
-      <div>
-         <Searchbar />
-         <div className='flex items-end my-4'>
-            <Subtitle classes='first-letter:capitalize nexa-font text-3xl'>
-               {pageTitle}
-            </Subtitle>
-            <Subtitle classes='text-sm text-gray-400 mx-2'>
-               {new Intl.NumberFormat().format(counter)} GIFs
-            </Subtitle>
-         </div>
-         {endpoint ? (
-            <GifsList
-               endpoint='search'
-               query={endpoint}
-               offset={offset}
-               handleCounter={handleCounter}
-            />
-         ) : (
-            <h1>Ocurrio un error</h1>
-         )}
-         <div>
-            <button
-               onClick={() => handleOffset(offset + 1)}
-               className='p-2 bg-slate-300'>
-               {'>1'}
-            </button>
-            <button
-               onClick={() => handleOffset(offset - 1)}
-               className='p-2 bg-slate-300'>
-               {'<1'}
-            </button>
-         </div>
-      </div>
+      <h1 className='text-white'>
+         {gifs && <GifsList gifs={gifs} isSearching={true} />}
+      </h1>
    )
 }
 
