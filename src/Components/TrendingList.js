@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import useGifs from '../Hooks/useGifs'
 import Subtitle from './Subtitle'
-import { NavLink } from 'react-router-dom'
 import TrendingCard from './TrendingCard'
 
 const TrendingList = () => {
@@ -16,7 +15,7 @@ const TrendingList = () => {
          <Subtitle>Trending</Subtitle>
          <div className='flex overflow-scroll gap-2 mt-2 no-scroll-bar'>
             {gifs && !error ? (
-               gifs.map((el, i) => <TrendingCard el={el} i={i} key={i} />)
+               gifs.map((el, i) => <TrendingCard el={el} key={i} />)
             ) : (
                <div className='spinner' />
             )}

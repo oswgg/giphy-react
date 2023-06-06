@@ -1,6 +1,9 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import GifContext from '../Context/GifContext'
 
 const GifCard = ({ data, isSearching, index }) => {
+   const { changeGif } = useContext(GifContext)
    const GIF_DATA = {
       IMAGE_SRC: isSearching
          ? data.images.downsized_medium.url
@@ -29,6 +32,7 @@ const GifCard = ({ data, isSearching, index }) => {
    return (
       <Link
          to={'/gif/' + GIF_DATA.URL_TO}
+         onClick={() => changeGif(data)}
          className={`group/shadow h-[15em] rounded-md overflow-hidden ${isGrow} relative ${colorBg} grid-item cursor-pointer`}>
          <div className='absolute bottom-0 text-white w-full h-1/2 group-hover/shadow:bg-gradient-to-t z-10'>
             <div className='absolute bottom-0 p-4'>

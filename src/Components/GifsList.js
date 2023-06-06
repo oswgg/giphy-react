@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import useGifs from '../Hooks/useGifs'
 import GifCard from './GifCard'
 
 const GifsList = ({ gifs, isSearching }) => {

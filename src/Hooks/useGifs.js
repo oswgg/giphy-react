@@ -6,7 +6,6 @@ const api = helpGifs()
 const useGifs = () => {
    const [gifs, setGifs] = useState(null)
    const [error, setError] = useState(null)
-   const [pagination, setPagination] = useState(null)
 
    const getByDefault = () => {
       api.getDefault()
@@ -19,7 +18,8 @@ const useGifs = () => {
    }
 
    const getCategories = () => {
-      api.getCategories()
+      return api
+         .getCategories()
          .then(res => {
             if (res.error) return Promise.reject(res)
 
