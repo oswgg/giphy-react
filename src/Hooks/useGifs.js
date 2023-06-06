@@ -3,25 +3,32 @@ import helpGifs from '../helpers/helpGifs'
 
 const api = helpGifs()
 
-const useGifs = options => {
-   const [gifs, setGifs] = useState([])
-   const [error, setError] = useState({})
-   const [pagination, setPagination] = useState({})
+const useGifs = () => {
+   const [gifs, setGifs] = useState(null)
+   const [error, setError] = useState(null)
+   const [pagination, setPagination] = useState(null)
 
-   const get = () => {
-      setGifs([])
-
-      api.get(options)
+   const getByDefault = () => {
+      api.getDefault()
          .then(res => {
-            if (res.error) Promise.reject(res)
-            const { gifs, pagination } = res
-            setGifs([...gifs])
-            setPagination(pagination)
+            if (res.error) return Promise.reject(res)
+
+            setGifs(res.data)
          })
          .catch(err => setError(err))
    }
 
-   return { gifs, error, get, pagination }
+   const getCategories = () => {
+      api.getCategories()
+         .then(res => {
+            if (res.error) return Promise.reject(res)
+
+            setGifs(res.data)
+         })
+         .catch(err => setError(err))
+   }
+
+   return { gifs, error, getByDefault, getCategories }
 }
 
 export default useGifs

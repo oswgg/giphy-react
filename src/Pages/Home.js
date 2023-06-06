@@ -3,16 +3,13 @@ import GifsList from '../Components/GifsList'
 import Searchbar from '../Components/SearchBar'
 import Subtitle from '../Components/Subtitle'
 import TrendingList from '../Components/TrendingList'
+import useGifs from '../Hooks/useGifs'
 const apiKey = 'E3tz28FivKKk4RtmkZdHwppgGlDCLcgr'
 
 const Home = () => {
-   const [gifs, setGifs] = useState(null)
+   const { gifs, error, getCategories } = useGifs()
    useEffect(() => {
-      fetch(
-         `http://api.giphy.com/v1/gifs/categories?&api_key=${apiKey}&limit=23`
-      )
-         .then(res => res.json())
-         .then(data => setGifs(data.data))
+      getCategories()
    }, [])
 
    return (

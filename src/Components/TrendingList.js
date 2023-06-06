@@ -1,26 +1,22 @@
 import { useEffect } from 'react'
 import useGifs from '../Hooks/useGifs'
 import Subtitle from './Subtitle'
+import { NavLink } from 'react-router-dom'
+import TrendingCard from './TrendingCard'
 
 const TrendingList = () => {
-   const { gifs, error, get } = useGifs({ endpoint: 'trending' })
+   const { gifs, error, getByDefault } = useGifs()
 
    useEffect(() => {
-      get()
+      getByDefault()
    }, [])
 
    return (
       <div className='mt-5'>
          <Subtitle>Trending</Subtitle>
          <div className='flex overflow-scroll gap-2 mt-2 no-scroll-bar'>
-            {gifs.length !== 0 && !error.error ? (
-               gifs.map((el, i) => (
-                  <img
-                     key={i}
-                     src={el.images.downsized_medium.url}
-                     className='h-32 object-fill rounded-md grow'
-                  />
-               ))
+            {gifs && !error ? (
+               gifs.map((el, i) => <TrendingCard el={el} i={i} key={i} />)
             ) : (
                <div className='spinner' />
             )}

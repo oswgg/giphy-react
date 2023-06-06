@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import GifCard from '../Components/GifCard'
 import GifsList from '../Components/GifsList'
+import Searchbar from '../Components/SearchBar'
+
 const apiKey = 'E3tz28FivKKk4RtmkZdHwppgGlDCLcgr'
 
 const Search = () => {
@@ -13,6 +14,7 @@ const Search = () => {
    const limit = 23
 
    useEffect(() => {
+      setGifs(null)
       fetch(
          `http://api.giphy.com/v1/gifs/search?&api_key=${apiKey}&limit=${limit}&offset=${
             page * limit
@@ -23,9 +25,10 @@ const Search = () => {
    }, [category])
 
    return (
-      <h1 className='text-white'>
+      <>
+         <Searchbar />
          {gifs && <GifsList gifs={gifs} isSearching={true} />}
-      </h1>
+      </>
    )
 }
 

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const GifCard = ({ data, isSearching, index }) => {
    const GIF_DATA = {
@@ -27,8 +27,8 @@ const GifCard = ({ data, isSearching, index }) => {
    const isGrow = index % 4 === 0 ? 'grow' : 'max-w-[20%]'
 
    return (
-      <NavLink
-         to={GIF_DATA.URL_TO}
+      <Link
+         to={'/gif/' + GIF_DATA.URL_TO}
          className={`group/shadow h-[15em] rounded-md overflow-hidden ${isGrow} relative ${colorBg} grid-item cursor-pointer`}>
          <div className='absolute bottom-0 text-white w-full h-1/2 group-hover/shadow:bg-gradient-to-t z-10'>
             <div className='absolute bottom-0 p-4'>
@@ -40,7 +40,7 @@ const GifCard = ({ data, isSearching, index }) => {
             src={imageSrc}
             className='hover:scale-110 h-full w-full object-cover object-center transition-all ease-in'
          />
-      </NavLink>
+      </Link>
    )
 }
 
