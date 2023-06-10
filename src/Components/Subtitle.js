@@ -1,11 +1,8 @@
-const Subtitle = ({ classes, children }) => {
+const Subtitle = ({ children, ...rest }) => {
    return (
-      <p
-         className={`text-white text-xl font-medium tracking-wide ${
-            classes || ''
-         }`}>
+      <h3 className={'text-white text-xl font-medium tracking-wide'} {...rest}>
          {children}
-      </p>
+      </h3>
    )
 }
 

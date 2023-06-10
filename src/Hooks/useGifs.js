@@ -8,6 +8,7 @@ const useGifs = () => {
    const [error, setError] = useState(null)
 
    const getByDefault = () => {
+      setGifs(null)
       api.getDefault()
          .then(res => {
             if (res.error) return Promise.reject(res)
@@ -18,6 +19,7 @@ const useGifs = () => {
    }
 
    const getCategories = () => {
+      setGifs(null)
       return api
          .getCategories()
          .then(res => {
@@ -28,7 +30,20 @@ const useGifs = () => {
          .catch(err => setError(err))
    }
 
-   return { gifs, error, getByDefault, getCategories }
+   const getFromSearch = options => {
+      setGifs(null)
+      return api
+         .getFromSearch(options)
+         .then(res => {
+            if (res.error) return Promise.reject(res)
+
+            console.log(res)
+            setGifs(res.data)
+         })
+         .catch(err => setError(err))
+   }
+
+   return { gifs, error, getByDefault, getCategories, getFromSearch }
 }
 
 export default useGifs

@@ -9,7 +9,7 @@ import Gif from './Pages/Gif'
 const App = () => {
    return (
       <div className='app min-h-screen flex justify-center overflow-hidden'>
-         <div className='w-[70%] pt-5'>
+         <div className='w-[72%] pt-5'>
             <Navigation />
             <GifContextProvider>
                <Routes>

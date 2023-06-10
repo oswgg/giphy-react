@@ -1,9 +1,7 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import GifContext from '../Context/GifContext'
 
 const GifCard = ({ data, isSearching, index }) => {
-   const { changeGif } = useContext(GifContext)
+   // get gif info if searching from data.gif... else from data...
    const GIF_DATA = {
       IMAGE_SRC: isSearching
          ? data.images.downsized_medium.url
@@ -22,17 +20,19 @@ const GifCard = ({ data, isSearching, index }) => {
          : data.gif.trending_datetime.split(' ')[0],
    }
 
+   GIF_DATA.TITLE = GIF_DATA.TITLE.split('GIF')[0]
+
    const imageSrc = isSearching
       ? data.images.downsized_medium.url
       : data.gif.images.downsized_medium.url
 
+   // control the shadow color or large of the gif
    const colorBg = index % 3 === 0 ? 'from-green-500' : 'from-blue-500'
    const isGrow = index % 4 === 0 ? 'grow' : 'max-w-[20%]'
 
    return (
       <Link
-         to={'/gif/' + GIF_DATA.URL_TO}
-         onClick={() => changeGif(data)}
+         to={`/gif/${GIF_DATA.URL_TO}-${data?.gif.id || data.id}`}
          className={`group/shadow h-[15em] rounded-md overflow-hidden ${isGrow} relative ${colorBg} grid-item cursor-pointer`}>
          <div className='absolute bottom-0 text-white w-full h-1/2 group-hover/shadow:bg-gradient-to-t z-10'>
             <div className='absolute bottom-0 p-4'>

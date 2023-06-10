@@ -1,3 +1,6 @@
+/* eslint-disable indent */
+import { SEARCH_TYPES } from './types'
+
 const apiKey = 'E3tz28FivKKk4RtmkZdHwppgGlDCLcgr'
 
 const helpGifs = () => {
@@ -27,6 +30,19 @@ const helpGifs = () => {
          `http://api.giphy.com/v1/gifs/categories?&api_key=${apiKey}&limit=20`
       )
 
-   return { getDefault, getCategories }
+   const getFromSearch = options => {
+      const { limit, page, search, type } = options
+
+      const url =
+         type === SEARCH_TYPES.UNIQUE
+            ? `http://api.giphy.com/v1/gifs/${search}?api_key=${apiKey}`
+            : `http://api.giphy.com/v1/gifs/search?&api_key=${apiKey}&limit=${limit}&offset=${
+                 page * limit
+              }&q=${search}}`
+
+      return fetchGifs(url)
+   }
+
+   return { getDefault, getCategories, getFromSearch }
 }
 export default helpGifs

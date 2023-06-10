@@ -6,71 +6,60 @@
   font-family: 'Nexa black';
   src: url('../assets/resources/Nexa-Trial-Black.ttf');
 }
-
+/* 
 @font-face {
   font-family: 'Interface bold';
   src: url('../assets/resources/InterFace_Trial_Bd.ttf');
-}
-
-@font-face {
-  font-family: 'Interface bold italic';
-  src: url('../assets/resources/InterFace_Trial_BdIt.ttf');
-}
-
-.nexa-font {
-  font-family: 'Nexa black';
-}
-
-.interface-font {
-  font-family: 'Interface bold';
-}
-
-.interface-italic-font {
-  font-family: 'Interface bold italic';
 } */
 
+@font-face {
+   font-family: 'Interface';
+   src: url('../assets/fonts/InterFace_Trial_Bd.ttf');
+}
+
 .app {
-	font-family: 'Interface bold';
-	background-color: rgb(18 18 18);
+   @apply tracking-[0.01em];
+   font-family: 'Interface';
+   background-color: rgb(18 18 18);
 }
 
 .spinner {
-	width: 40px;
-	height: 40px;
-	background-color: #333;
+   width: 40px;
+   height: 40px;
+   background-color: #333;
 
-	margin: 100px auto;
-	-webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
-	animation: sk-rotateplane 1.2s infinite ease-in-out;
+   margin: 100px auto;
+   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 
 .no-scroll-bar::-webkit-scrollbar {
-	display: none;
+   display: none;
 }
 
 @-webkit-keyframes sk-rotateplane {
-	0% {
-		-webkit-transform: perspective(120px);
-	}
-	50% {
-		-webkit-transform: perspective(120px) rotateY(180deg);
-	}
-	100% {
-		-webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
-	}
+   0% {
+      -webkit-transform: perspective(120px);
+   }
+   50% {
+      -webkit-transform: perspective(120px) rotateY(180deg);
+   }
+   100% {
+      -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
+   }
 }
 
 @keyframes sk-rotateplane {
-	0% {
-		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-		-webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
-	}
-	50% {
-		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-		-webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
-	}
-	100% {
-		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-		-webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
-	}
+   0% {
+      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+   }
+   50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+   }
+   100% {
+      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+   }
 }
