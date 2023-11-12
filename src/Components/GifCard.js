@@ -14,11 +14,13 @@ const GifCard = ({ data, isSearching }) => {
    return (
       <Link
          to={`/gif/${GIF_DATA.URL_TO}`}
-         className={'group/shadow overflow-hidden relative from-gray-900'}>
-         <div className='overflow-hidden h-full mb-2'>
-            <div className='absolute bottom-0 text-white w-full h-1/2 group-hover/shadow:bg-gradient-to-t z-10'>
+         className={'group/info overflow-hidden relative from-gray-900'}>
+         <div className='overflow-hidden h-full mb-2 '>
+            <div className='absolute bottom-0 text-white w-full h-1/2 group-hover/info:bg-gradient-to-t z-10'>
                <div className='absolute bottom-0 p-4'>
-                  <p className='font-bold capitalize'>{GIF_DATA.TITLE}</p>
+                  <p className='font-bold capitalize opacity-0 group-hover/info:opacity-100'>
+                     {GIF_DATA.TITLE}
+                  </p>
                </div>
             </div>
             <img

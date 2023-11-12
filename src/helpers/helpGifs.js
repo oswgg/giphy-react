@@ -22,12 +22,12 @@ const helpGifs = () => {
 
    const getDefault = () =>
       fetchGifs(
-         `http://api.giphy.com/v1/gifs/trending?&api_key=${apiKey}&limit=20`
+         `https://api.giphy.com/v1/gifs/trending?&api_key=${apiKey}&limit=20`
       )
 
    const getCategories = () =>
       fetchGifs(
-         `http://api.giphy.com/v1/gifs/categories?&api_key=${apiKey}&limit=20`
+         `https://api.giphy.com/v1/gifs/categories?&api_key=${apiKey}&limit=20`
       )
 
    const getFromSearch = options => {
@@ -35,8 +35,8 @@ const helpGifs = () => {
 
       const url =
          type === SEARCH_TYPES.UNIQUE
-            ? `http://api.giphy.com/v1/gifs/${search}?api_key=${apiKey}`
-            : `http://api.giphy.com/v1/gifs/search?&api_key=${apiKey}&limit=${limit}&offset=${
+            ? `https://api.giphy.com/v1/gifs/${search}?api_key=${apiKey}`
+            : `https://api.giphy.com/v1/gifs/search?&api_key=${apiKey}&limit=${limit}&offset=${
                  page * limit
               }&q=${search}}`
 
@@ -45,7 +45,7 @@ const helpGifs = () => {
 
    const getRelatedContent = options => {
       const { endpoint, limit, gifID } = options
-      const url = `http://api.giphy.com/v1/gifs/${endpoint}?gif_id=${gifID}&api_key=Gc7131jiJuvI7IdN0HZ1D7nh0ow5BU6g&limit=${limit}`
+      const url = `https://api.giphy.com/v1/gifs/${endpoint}?gif_id=${gifID}&api_key=Gc7131jiJuvI7IdN0HZ1D7nh0ow5BU6g&limit=${limit}`
       return fetchGifs(url)
    }
 
