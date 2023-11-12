@@ -9,7 +9,8 @@ const useGifs = () => {
 
    const getByDefault = () => {
       setGifs(null)
-      api.getDefault()
+      return api
+         .getDefault()
          .then(res => {
             if (res.error) return Promise.reject(res)
 
@@ -37,13 +38,32 @@ const useGifs = () => {
          .then(res => {
             if (res.error) return Promise.reject(res)
 
-            console.log(res)
+            setGifs(res.data)
+            return res.data
+         })
+         .catch(err => setError(err))
+   }
+
+   const getRelated = options => {
+      setGifs(null)
+      return api
+         .getRelatedContent(options)
+         .then(res => {
+            if (res.error) return Promise.reject(res)
+
             setGifs(res.data)
          })
          .catch(err => setError(err))
    }
 
-   return { gifs, error, getByDefault, getCategories, getFromSearch }
+   return {
+      gifs,
+      error,
+      getByDefault,
+      getCategories,
+      getFromSearch,
+      getRelated,
+   }
 }
 
 export default useGifs

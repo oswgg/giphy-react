@@ -1,14 +1,10 @@
-import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import GifContext from '../Context/GifContext'
 
 const TrendingCard = ({ el }) => {
    const navigate = useNavigate()
-   const { changeGif } = useContext(GifContext)
 
    const handleRedirect = () => {
-      changeGif(el)
-      navigate('/gif/' + el.title.replaceAll(' ', '-'))
+      navigate(`/gif/${el.title.replaceAll(' ', '-')}-${el.id}`)
    }
 
    return (

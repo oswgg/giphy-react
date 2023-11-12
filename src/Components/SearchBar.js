@@ -5,9 +5,8 @@ const Searchbar = () => {
    const [form, setForm] = useState({})
    const [error, setError] = useState(null)
 
-   const formRef = useRef()
-
    const navigate = useNavigate()
+   const formRef = useRef()
 
    const handleOnChange = ({ target }) => {
       setForm({
@@ -15,6 +14,7 @@ const Searchbar = () => {
          [target.name]: target.value,
       })
    }
+
    const handleOnSubmit = e => {
       e.preventDefault()
       const { search } = form
@@ -28,7 +28,7 @@ const Searchbar = () => {
       setForm({})
       formRef.current.value = null
       formRef.current.blur()
-      navigate(`/search/${form.search}`)
+      navigate(`/explore/${form.search}`)
    }
 
    return (

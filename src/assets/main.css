@@ -16,6 +16,14 @@
    font-family: 'Interface';
    src: url('../assets/fonts/InterFace_Trial_Bd.ttf');
 }
+@font-face {
+   font-family: 'Interface Light';
+   src: url('../assets/fonts/InterFace_Trial_It.ttf');
+}
+
+.light {
+   font-family: 'Interface Light';
+}
 
 .app {
    @apply tracking-[0.01em];

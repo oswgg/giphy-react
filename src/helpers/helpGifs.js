@@ -43,6 +43,12 @@ const helpGifs = () => {
       return fetchGifs(url)
    }
 
-   return { getDefault, getCategories, getFromSearch }
+   const getRelatedContent = options => {
+      const { endpoint, limit, gifID } = options
+      const url = `http://api.giphy.com/v1/gifs/${endpoint}?gif_id=${gifID}&api_key=Gc7131jiJuvI7IdN0HZ1D7nh0ow5BU6g&limit=${limit}`
+      return fetchGifs(url)
+   }
+
+   return { getDefault, getCategories, getFromSearch, getRelatedContent }
 }
 export default helpGifs

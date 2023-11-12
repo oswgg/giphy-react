@@ -7,6 +7,7 @@ import useGifs from '../Hooks/useGifs'
 
 const Home = () => {
    const { gifs, error, getCategories } = useGifs()
+
    useEffect(() => {
       getCategories()
    }, [])

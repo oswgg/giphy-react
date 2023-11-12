@@ -3,22 +3,19 @@ import Navigation from './Components/Navigation'
 import Home from './Pages/Home'
 import NotFound from './Pages/NotFound'
 import Search from './Pages/Search'
-import { GifContextProvider } from './Context/GifContext'
-import Gif from './Pages/Gif'
+import Gif from './Pages/GifPage'
 
 const App = () => {
    return (
       <div className='app min-h-screen flex justify-center overflow-hidden'>
-         <div className='w-[72%] pt-5'>
+         <div className='w-[72%] md:max-w-[1050px] pt-5'>
             <Navigation />
-            <GifContextProvider>
-               <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='/search/:category' element={<Search />} />
-                  <Route path='/gif/:gif' element={<Gif />} />
-                  <Route path='*' element={<NotFound />} />
-               </Routes>
-            </GifContextProvider>
+            <Routes>
+               <Route path='/' element={<Home />} />
+               <Route path='/explore/:category' element={<Search />} />
+               <Route path='/gif/:gif' element={<Gif />} />
+               <Route path='*' element={<NotFound />} />
+            </Routes>
          </div>
       </div>
    )
